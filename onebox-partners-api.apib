@@ -88,8 +88,8 @@ Method to validate a user through an external partner system.
           "error_description": "Full authentication is required to access this resource"
         }
 
-## Partner events [/partners-api/1.0/partner_events?id&start_date&end_date&min_price&max_price&city_id6latitude&longitude&radius&is_seats_available&page&page_size]
-List all the key data from the partners events.
+## Partner event dates [/partners-api/1.0/event_dates]
+Key data from the supplier event dates by a given partner and optionally a capacity id.
 
 See below the description of the response fields we consider that need to be explained:
 
@@ -100,9 +100,9 @@ See below the description of the response fields we consider that need to be exp
 | trace_id                         | (Text) unique identifier of the request |
 | parameters                       | (Object) Request filtering used         |
 
-### List all partners events [GET]
+### List all partner events [POST]
 
-Collection of events and its session dates.
+List all the key data from the supplier event dates by a given partner and optionally a capacity id.
 
 + Request
 
@@ -111,111 +111,169 @@ Collection of events and its session dates.
             Authorization: Bearer [OAUTH2_TOKEN]
             Accept: application/json
 
-+ Parameters
-    + id (optional, string) ... Filter by given event id
-    + start_date (optional, date) ... Filter by starting date ('2015-08-05T08:40:51.620Z')
-    + end_date (optional, date) ... Filter by final date
-    + min_price (optional, number) ... Filter from a minimum price and above.
-    + max_price (optional, number) ... Filter by a maximum price and below.
-    + city_id (optional, string) ... Filter by a given city id.
-    + latitude (optional, number) ... It needs a longitude and radius params to search arround a GPS location.
-    + longitude (optional, number) ... It needs a latitude and radius params to search arround a GPS location.
-    + radius (optional, number) ... Filter by a radius applied arround a GPS location.
-    + is_seats_available (optional, enum[boolean])
-      Filter whether is any seat available to book or not:
-        + Members
-          + `true` - Filter by events with seats still available.
-          + `false` - Filter by events with no seat is still available.
-    + page (optional, number) ... Paginate response to point at the given page number.
-    + page_size (optional, number) ... Indicate the maximum number of elements per page.
++ Request  (application/json)
+
+        {
+          "supplier_id": "avet-fcb",
+          "personal_id": "455444300X",
+          "partner_id": "3453",
+          "partner_pass": "1234",
+          "capacity_id": "25"
+        }
+
 
 + Response 200 (application/json)
 
         {
             "version": "1.0",
-            "href": "http://www.oneboxtm.com/ticketing-api/1.0/events/",
+            "href": "http://www.oneboxtm.com/partners-api/1.0/event_dates",
             "trace_id": "94abc26e-173a-4ab2-a71b-863aed20f656",
             "request_date": "2015-08-05T08:40:51.620Z",
-            "parameters":
-            {
-              "page": 2,
-              "page_size": 20
+            "parameters":{
+
             },
-            "partners_events": [
+            "partner_id": "12345",
+            "total_amount": 245.34,
+            "events": [
               {
-                "id": "JFSKF34K2K4",
+                "id": "1",
                 "event_name": "Campeonato liga LFP 15-16",
-                "start_date": "2015-08-05T08:40:51.620Z",
-                "end_date": "2015-08-05T08:40:51.620Z",
-                "location":{
-                  "country": "España",
-                  "city_id": "4087",
-                  "city_name": "Barcelona",
-                  "zip_code": "fdjkw34-4",
-                  "longitude": 34209.30,
-                  "latitude": 342342.33
-                },
+                "supplier_id": "avet-fcb",
+                "capacity_id": "25",
                 "venue_id": "2",
                 "venue_name": "Camp Nou",
                 "event_dates": [
                   {
                       "id": "12",
                       "date": "2015-08-05T08:40:51.620Z",
-                      "price_id": "21",
-                      "price_level_id": "454",
-                      "min_price": 23.3,
-                      "max_price": 50.33,
-                      "seats_available": 34,
-                      "links":[
-                        {
-                          "name": "eventdates",
-                          "prompt": "Event dates",
-                          "rel": "eventdates",
-                          "href": "event_dates?id=12",
-                          "render": "link"
-                        }
-                      ]
-                  },
-                  {
-                      "id": "13",
-                      "date": "2015-08-05T08:40:51.620Z",
-                      "price_id": "21",
-                      "price_level_id": "454",
-                      "min_price": 23.3,
-                      "max_price": 50.33,
-                      "seats_available": 23,
-                      "links":[
-                        {
-                          "name": "eventdates",
-                          "prompt": "Event dates",
-                          "rel": "eventdates",
-                          "href": "event_dates?id=12",
-                          "render": "link"
-                        }
-                      ]
+                      "amount": 100.00,
+                      "seat_available": false,
+                      "links":[]
                   }
-                ],
-              }
-            ],
-            "links": [
-              {
-                "name": "next_page",
-                "prompt": "Next",
-                "rel": "next",
-                "href": "events?page=3&page_size=20",
-                "render": "link"
+                ]
               },
               {
-                "name": "previous_page",
-                "prompt": "Back",
-                "rel": "back",
-                "href": "events?page=1&page_size=20",
-                "render": "link"
+                "id": "2",
+                "event_name": "Campeonato liga LFP 15-16",
+                "supplier_id": "avet-fcb",
+                "capacity_id": "25",
+                "venue_id": "2",
+                "venue_name": "Camp Nou",
+                "event_dates": [
+                  {
+                      "id": "13",
+                      "date": "2015-09-05T08:40:51.620Z",
+                      "amount": 145.34,
+                      "seat_available": true,
+                      "links":[]
+                  }
+                ]
               }
-            ]
+            ],
+            "links": []
         }
 
-+ Response 204 (application/json)
++ Response 400 (application/json)
+
+        {
+          "error": "Bad request",
+          "error_description": "There was a syntax error, check your params request and try it again."
+        }
+
++ Response 401 (application/json)
+
+        {
+          "error": "unauthorized",
+          "error_description": "Full authentication is required to access this resource"
+        }
+
+## Partner seat availability management [/partners-api/1.0/seat_availabilities]
+Method to handle with the release and recover seat management for an external supplier and a given partner and event date.
+
+See below the description of the response fields we consider that need to be explained:
+
+| Response Field                   | Description                             |
+|----------------------------------|-----------------------------------------|
+| version                          | (Text) Version of the API               |
+| href                             | (Text) Url of the API doc               |
+| trace_id                         | (Text) unique identifier of the request |
+| parameters                       | (Object) Request filtering used         |
+
+### Manage seat availability [POST]
+
+Method to let the partner release or recover its seats by leaving them available to general admission sells or not.
+Response is an event dates list with the resultant seats status.
+
++ Request
+
+  + Headers
+
+            Authorization: Bearer [OAUTH2_TOKEN]
+            Accept: application/json
+
++ Request  (application/json)
+
+        {
+          "supplier_id": "avet-fcb",
+          "personal_id": "455444300X",
+          "partner_id": "3453",
+          "partner_pass": "1234",
+          "capacity_id": "25",
+          "event_date_id": "1",
+          "seat_available": true
+        }
+
+
++ Response 200 (application/json)
+
+        {
+            "version": "1.0",
+            "href": "http://www.oneboxtm.com/partners-api/1.0/seat_availabilities",
+            "trace_id": "94abc26e-173a-4ab2-a71b-863aed20f656",
+            "request_date": "2015-08-05T08:40:51.620Z",
+            "parameters":{
+
+            },
+            "partner_id": "12345",
+            "total_amount": 245.34,
+            "events": [
+              {
+                "id": "1",
+                "event_name": "Campeonato liga LFP 15-16",
+                "supplier_id": "avet-fcb",
+                "capacity_id": "25",
+                "venue_id": "2",
+                "venue_name": "Camp Nou",
+                "event_dates": [
+                  {
+                      "id": "12",
+                      "date": "2015-08-05T08:40:51.620Z",
+                      "amount": 100.00,
+                      "seat_available": false,
+                      "links":[]
+                  }
+                ]
+              },
+              {
+                "id": "2",
+                "event_name": "Campeonato liga LFP 15-16",
+                "supplier_id": "avet-fcb",
+                "capacity_id": "25",
+                "venue_id": "2",
+                "venue_name": "Camp Nou",
+                "event_dates": [
+                  {
+                      "id": "13",
+                      "date": "2015-09-05T08:40:51.620Z",
+                      "amount": 145.34,
+                      "seat_available": true,
+                      "links":[]
+                  }
+                ]
+              }
+            ],
+            "links": []
+        }
 
 + Response 400 (application/json)
 
