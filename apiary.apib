@@ -58,7 +58,37 @@ Once you have a token you can use it in all API calls as shown below.
           "error_description": "Full authentication is required to access this resource"
         }
 
-## Parter events [/partners-api/1.0/partner_events?id&start_date&end_date&min_price&max_price&city_id6latitude&longitude&radius&is_seats_available&page&page_size]
+## Login [/partners-api/1.0/login]
+Method to validate a user through an external partner system.
+
+### Login [POST]
+
++ Request  (application/json)
+
+        {
+          "supplier_id": "avet-fcb",
+          "personal_id": "455444300X",
+          "partner_id": "3453",
+          "partner_pass": "1234"
+        }
+
++ Response 204 (application/json)
+
++ Response 400 (application/json)
+
+        {
+          "error": "Bad request",
+          "error_description": "There was a syntax error, check your params request and try it again."
+        }
+
++ Response 401 (application/json)
+
+        {
+          "error": "unauthorized",
+          "error_description": "Full authentication is required to access this resource"
+        }
+
+## Partner events [/partners-api/1.0/partner_events?id&start_date&end_date&min_price&max_price&city_id6latitude&longitude&radius&is_seats_available&page&page_size]
 List all the key data from the partners events.
 
 See below the description of the response fields we consider that need to be explained:
@@ -186,51 +216,6 @@ Collection of events and its session dates.
         }
 
 + Response 204 (application/json)
-
-+ Response 400 (application/json)
-
-        {
-          "error": "Bad request",
-          "error_description": "There was a syntax error, check your params request and try it again."
-        }
-
-+ Response 401 (application/json)
-
-        {
-          "error": "unauthorized",
-          "error_description": "Full authentication is required to access this resource"
-        }
-
-## Login [/partners-api/1.0/login]
-List all the key data for each evet date (sesión in spanish) like zones, price zone levels, available promotions and availability by zone, from a given event.
-
-See below the description of the response fields we consider that need to be explained:
-
-| Response Field                   | Description                             |
-|----------------------------------|-----------------------------------------|
-| version                          | (Text) Version of the API               |
-| href                             | (Text) Url of the API doc               |
-| trace_id                         | (Text) unique identifier of the request |
-| parameters                       | (Object) Request filtering used         |
-
-### Login [POST]
-
-+ Request  (application/json)
-
-        {
-          "supplier_id": "password",
-          "client_id": [CLIENT_ID],
-          "client_secret": [CLIENT_SECRET]
-        }
-
-+ Response 201 (application/json)
-
-        {
-          "access_token": "[OAUTH2_TOKEN]",
-          "token_type":"bearer",
-          "expires_in":7200,
-          "refresh_token": "[REFRESH_TOKEN]"
-        }
 
 + Response 400 (application/json)
 
