@@ -67,7 +67,6 @@ Method to validate a user through an external partner system.
 
         {
           "supplier_id": "avet-fcb",
-          "personal_id": "455444300X",
           "partner_id": "3453",
           "partner_pass": "1234"
         }
@@ -115,7 +114,6 @@ List all the key data from the supplier event dates by a given partner and optio
 
         {
           "supplier_id": "avet-fcb",
-          "personal_id": "455444300X",
           "partner_id": "3453",
           "partner_pass": "1234",
           "capacity_id": "25"
@@ -215,7 +213,6 @@ Response is an event dates list with the resultant seats status.
 
         {
           "supplier_id": "avet-fcb",
-          "personal_id": "455444300X",
           "partner_id": "3453",
           "partner_pass": "1234",
           "capacity_id": "25",
@@ -274,6 +271,73 @@ Response is an event dates list with the resultant seats status.
             ],
             "links": []
         }
+
++ Response 400 (application/json)
+
+        {
+          "error": "Bad request",
+          "error_description": "There was a syntax error, check your params request and try it again."
+        }
+
++ Response 401 (application/json)
+
+        {
+          "error": "unauthorized",
+          "error_description": "Full authentication is required to access this resource"
+        }
+
+## Partner attributes [/partners-api/1.0/attributes]
+Method to get the attributes of partner.
+
+See below the description of the response fields we consider that need to be explained:
+
+| Response Field                   | Description                             |
+|----------------------------------|-----------------------------------------|
+| version                          | (Text) Version of the API               |
+| href                             | (Text) Url of the API doc               |
+| trace_id                         | (Text) unique identifier of the request |
+| parameters                       | (Object) Request filtering used         |
+
+### Manage seat availability [POST]
+
+Method to let the partner release or recover its seats by leaving them available to general admission sells or not.
+Response is an event dates list with the resultant seats status.
+
++ Request
+
+  + Headers
+
+            Authorization: Bearer [OAUTH2_TOKEN]
+            Accept: application/json
+
++ Request  (application/json)
+
+        {
+          "supplier_id": "avet-fcb",
+          "partner_id": "3453",
+          "partner_pass": "1234"
+        }
+
+
++ Response 200 (application/json)
+
+        {
+          "supplier_id": "avet-fcb",
+          "partner_id": "3453",
+          "person_id": "3453",
+          "partner_pass": "1234"
+          "seat_id": "1234",
+          "row": "4",
+          "zone_id": "515",
+          "partner_type": "SUB",
+          "capacity_id": "51515"
+        }
+
+        | Response Field Partner_type      | Description                             |
+        |----------------------------------|-----------------------------------------|
+        | "SUB"                            | subscriber (Spanish: Abonado)           |
+        | "PAR"                            | partner   (Spanish: Socio)              |
+        | "SUP"                            | supporter (Spanish): Simpatizante       |
 
 + Response 400 (application/json)
 
