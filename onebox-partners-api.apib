@@ -286,9 +286,6 @@ Response is an event dates list with the resultant seats status.
           "error_description": "Full authentication is required to access this resource"
         }
 
-		
-
-
 ## Partner attributes [/partners-api/1.0/attributes]
 Method to get the attributes of partner.
 
@@ -305,6 +302,12 @@ See below the description of the response fields we consider that need to be exp
 
 Method to let the partner release or recover its seats by leaving them available to general admission sells or not.
 Response is an event dates list with the resultant seats status.
+
+| Response Field Partner_type      | Description                             |
+|----------------------------------|-----------------------------------------|
+| "SUB"                            | subscriber (Spanish: Abonado)           |
+| "PAR"                            | partner   (Spanish: Socio)              |
+| "SUP"                            | supporter (Spanish): Simpatizante       |
 
 + Request
 
@@ -329,22 +332,12 @@ Response is an event dates list with the resultant seats status.
           "partner_id": "3453",
           "person_id": "3453",
           "partner_pass": "1234"
-	  "seat_id": "1234",
-	  "row": "4",
-	  "zone_id": "515",
-	  "partner_type": "SUB",
-	  "capacity_id": "51515"
+          "seat_id": "1234",
+          "row": "4",
+          "zone_id": "515",
+          "partner_type": "SUB",
+          "capacity_id": "51515"
         }
-		
-		
-| Response Field Partner_type                   | Description                             |
-|----------------------------------|-----------------------------------------|
-| "SUB"                            | subscriber (Spanish: Abonado)  		 |
-| "PAR"                            | partner   (Spanish: Socio)	             |
-| "SUP"                           | supporter (Spanish): Simpatizante       |
-
-
-
 
 + Response 400 (application/json)
 
@@ -359,4 +352,3 @@ Response is an event dates list with the resultant seats status.
           "error": "unauthorized",
           "error_description": "Full authentication is required to access this resource"
         }
-		
