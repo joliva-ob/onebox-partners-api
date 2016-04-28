@@ -270,33 +270,49 @@ Response is an event dates list with the resultant seats status.</p>
 </table>
 <div id="partner-attributes-post" class="action post"><h4 class="action-heading"><div class="name">Manage seat availability</div><a href="#partner-attributes-post" class="method post">POST</a><code class="uri">/partners-api/1.0/attributes</code></h4><p>Method to let the partner release or recover its seats by leaving them available to general admission sells or not.
 Response is an event dates list with the resultant seats status.</p>
+<table>
+<thead>
+<tr>
+<th>Response Field Partner_type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“SUB”</td>
+<td>subscriber (Spanish: Abonado)</td>
+</tr>
+<tr>
+<td>“PAR”</td>
+<td>partner   (Spanish: Socio)</td>
+</tr>
+<tr>
+<td>“SUP”</td>
+<td>supporter (Spanish): Simpatizante</td>
+</tr>
+</tbody>
+</table>
 <div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer [OAUTH2_TOKEN]</span><br><span class="hljs-attribute">Accept</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">supplier_id</span>": <span class="hljs-value"><span class="hljs-string">"avet-fcb"</span></span>,
   "<span class="hljs-attribute">partner_id</span>": <span class="hljs-value"><span class="hljs-string">"3453"</span></span>,
   "<span class="hljs-attribute">partner_pass</span>": <span class="hljs-value"><span class="hljs-string">"1234"</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
-  <span class="hljs-string">"supplier_id"</span>: <span class="hljs-string">"avet-fcb"</span>,
-  <span class="hljs-string">"partner_id"</span>: <span class="hljs-string">"3453"</span>,
-  <span class="hljs-string">"person_id"</span>: <span class="hljs-string">"3453"</span>,
-  <span class="hljs-string">"partner_pass"</span>: <span class="hljs-string">"1234"</span>
-  <span class="hljs-string">"seat_id"</span>: <span class="hljs-string">"1234"</span>,
-  <span class="hljs-string">"row"</span>: <span class="hljs-string">"4"</span>,
-  <span class="hljs-string">"zone_id"</span>: <span class="hljs-string">"515"</span>,
-  <span class="hljs-string">"partner_type"</span>: <span class="hljs-string">"SUB"</span>,
-  <span class="hljs-string">"capacity_id"</span>: <span class="hljs-string">"51515"</span>
-}
-
-| Response Field Partner_type      | Description                             |
-|----------------------------------|-----------------------------------------|
-| <span class="hljs-string">"SUB"</span>                            | subscriber (Spanish: Abonado)           |
-| <span class="hljs-string">"PAR"</span>                            | partner   (Spanish: Socio)              |
-| <span class="hljs-string">"SUP"</span>                            | supporter (Spanish): Simpatizante       |</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">supplier_id</span>": <span class="hljs-value"><span class="hljs-string">"avet-fcb"</span></span>,
+  "<span class="hljs-attribute">partner_id</span>": <span class="hljs-value"><span class="hljs-string">"3453"</span></span>,
+  "<span class="hljs-attribute">person_id</span>": <span class="hljs-value"><span class="hljs-string">"3453"</span></span>,
+  "<span class="hljs-attribute">partner_pass</span>": <span class="hljs-value"><span class="hljs-string">"1234"</span>
+  <span class="hljs-string">"seat_id"</span>: <span class="hljs-string">"1234"</span></span>,
+  "<span class="hljs-attribute">row</span>": <span class="hljs-value"><span class="hljs-string">"4"</span></span>,
+  "<span class="hljs-attribute">zone_id</span>": <span class="hljs-value"><span class="hljs-string">"515"</span></span>,
+  "<span class="hljs-attribute">partner_type</span>": <span class="hljs-value"><span class="hljs-string">"SUB"</span></span>,
+  "<span class="hljs-attribute">capacity_id</span>": <span class="hljs-value"><span class="hljs-string">"51515"</span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>400</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Bad request"</span></span>,
   "<span class="hljs-attribute">error_description</span>": <span class="hljs-value"><span class="hljs-string">"There was a syntax error, check your params request and try it again."</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"unauthorized"</span></span>,
   "<span class="hljs-attribute">error_description</span>": <span class="hljs-value"><span class="hljs-string">"Full authentication is required to access this resource"</span>
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 27 Apr 2016</p><script>/* eslint-env browser */
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 28 Apr 2016</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
