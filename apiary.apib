@@ -303,6 +303,12 @@ See below the description of the response fields we consider that need to be exp
 Method to let the partner release or recover its seats by leaving them available to general admission sells or not.
 Response is an event dates list with the resultant seats status.
 
+| Response Field Partner_type      | Description                             |
+|----------------------------------|-----------------------------------------|
+| "SUB"                            | subscriber (Spanish: Abonado)           |
+| "PAR"                            | partner   (Spanish: Socio)              |
+| "SUP"                            | supporter (Spanish): Simpatizante       |
+
 + Request
 
   + Headers
@@ -332,12 +338,6 @@ Response is an event dates list with the resultant seats status.
           "partner_type": "SUB",
           "capacity_id": "51515"
         }
-
-        | Response Field Partner_type      | Description                             |
-        |----------------------------------|-----------------------------------------|
-        | "SUB"                            | subscriber (Spanish: Abonado)           |
-        | "PAR"                            | partner   (Spanish: Socio)              |
-        | "SUP"                            | supporter (Spanish): Simpatizante       |
 
 + Response 400 (application/json)
 
